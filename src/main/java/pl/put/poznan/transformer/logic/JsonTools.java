@@ -21,7 +21,6 @@ public class JsonTools {
         } catch (Exception e) {
             System.err.println("Error converting text to JSON: " + e.getMessage());
         }
-
         return text;
     }
 
