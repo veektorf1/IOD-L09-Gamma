@@ -35,6 +35,4 @@ public class JsonTools {
         }
         return text;
     }
-
-
 }
