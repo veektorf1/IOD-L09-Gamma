@@ -10,24 +10,33 @@ import pl.put.poznan.transformer.logic.JsonTools;
 public class JsonHome {
     public int i;
 
-
-
     @RequestMapping("/")
     public String returnIndex (){
         return "home";
     }
     @PostMapping("/posting")
-
-    public String po(@RequestParam("input2") String finalInput, Model model) {
-        //JsonTools tools = new JsonTools(finalInput);
-        //tools.transform();
-        //model.addAttribute("input2", ;
+    public String post1(@RequestParam("input2") String finalInput, Model model) {
         String[] arrStr = {};
         JsonTools tools = new JsonTools(arrStr);
-        String upper = tools.transform(finalInput);
-        model.addAttribute("input2",upper) ;
+        try{
+            String jsonfull = tools.fullJson(finalInput);
+            model.addAttribute("input2",jsonfull) ;
+        } catch (Exception e) {
+            model.addAttribute("input2", "Invalid JSON input: " + e.getMessage());
+        }
         return "result";
     }
-
+    @PostMapping("/postingMinify")
+    public String post2(@RequestParam("input1") String finalInput, Model model) {
+        String[] arrStr = {};
+        JsonTools tools = new JsonTools(arrStr);
+        try{
+            String jsonminify = tools.minify(finalInput);
+            model.addAttribute("input1",jsonminify) ;
+        } catch (Exception e) {
+            model.addAttribute("input1", "Invalid JSON input: " + e.getMessage());
+        }
+        return "resultMinify";
+    }
 
 }
