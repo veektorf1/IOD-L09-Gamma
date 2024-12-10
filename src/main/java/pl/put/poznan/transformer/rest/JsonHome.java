@@ -39,4 +39,20 @@ public class JsonHome {
         return "resultMinify";
     }
 
+    @PostMapping("/postingSelected")
+    public String post3(@RequestParam("SelectedJSON") String finalInput,
+                        @RequestParam("SelectedAttributes") String attributes, Model model) {
+        String[] arrStr = {};
+
+        JsonTools tools = new JsonTools(arrStr);
+        try{
+            String selected_json= tools.show_selected(finalInput, attributes);
+            model.addAttribute("json",selected_json) ;
+
+        } catch (Exception e) {
+            model.addAttribute("json", "Invalid JSON input: " + e.getMessage());
+        }
+        return "resultSelected";
+    }
+
 }
