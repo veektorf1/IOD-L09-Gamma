@@ -55,4 +55,20 @@ public class JsonHome {
         return "resultSelected";
     }
 
+
+    @PostMapping("/postingDeleted")
+    public String post4(@RequestParam("DeletedJSON") String finalInput,
+                        @RequestParam("DeleteAttributes") String attributes, Model model) {
+        String[] arrStr = {};
+        JsonTools tools = new JsonTools(arrStr);
+        try{
+            String[] deleted_json = tools.delete_elemnt(finalInput, attributes);
+            model.addAttribute("json", deleted_json[0]);
+            model.addAttribute("deleted", deleted_json[1]);
+
+        } catch (Exception e) {
+            model.addAttribute("json", "Invalid JSON input: " + e.getMessage());
+        }
+        return "resultDeleted";
+    }
 }
