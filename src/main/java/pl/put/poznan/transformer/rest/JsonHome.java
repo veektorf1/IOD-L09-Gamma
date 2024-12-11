@@ -71,4 +71,19 @@ public class JsonHome {
         }
         return "resultDeleted";
     }
+
+    @PostMapping("/postingComparison")
+    public String post5(@RequestParam("MainJSON") String mainInput,@RequestParam("SecJSON") String secInput, Model model) {
+        String[] arrStr = {};
+        JsonTools tools = new JsonTools(arrStr);
+        try{
+            String[] json = tools.comparison(mainInput,secInput);
+            model.addAttribute("main", json[0]);
+            model.addAttribute("sec", json[1]);
+            model.addAttribute("comp", json[2]);
+        } catch (Exception e) {
+            model.addAttribute("json", "Invalid JSON input: " + e.getMessage());
+        }
+        return "resultComparison";
+    }
 }

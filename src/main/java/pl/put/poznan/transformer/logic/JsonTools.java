@@ -4,6 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  * This is just an example to show that the logic should be outside the REST service.
  */
@@ -85,5 +89,73 @@ public class JsonTools {
             System.err.println("Error while removing attributes: " + e.getMessage());
         }
         return final_output;
+    }
+
+    public String [] comparison(String main_json, String json_to_compare) {
+        ObjectMapper mapper = new ObjectMapper();
+        String[] result = new String[3];
+        try {
+            JsonNode main_json_tree = mapper.readTree(main_json);
+            JsonNode second_json_tree = mapper.readTree(json_to_compare);
+
+            String main_json_string = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(main_json_tree);
+            String second_json_string = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(second_json_tree);
+            Scanner main_scanner = new Scanner(main_json_string);
+            Scanner second_scanner = new Scanner(second_json_string);
+
+            String comparison_result = "";
+            while (main_scanner.hasNextLine()) {
+                String line = main_scanner.nextLine();
+                if(second_scanner.hasNextLine()) {
+                    if(line.equals(second_scanner.nextLine())) {
+                        comparison_result = comparison_result + " Same \n";
+                    } else {
+                        comparison_result = comparison_result + " Different \n";
+                    }
+                } else {
+                    comparison_result = comparison_result + " Different \n";
+                }
+            }
+
+            result[0]=main_json_string;
+            result[1]=second_json_string;
+            result[2]=comparison_result;
+
+            return result;
+        } catch (Exception e) {
+            System.err.println("Error while removing attributes: " + e.getMessage());
+        }
+        return result;
+        /*
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            JsonNode json = mapper.readTree(json_text);
+            String html = "{";
+    String html = mapper.writeValueAsString(json);
+            html = html.substring(1,html.length() - 1);
+
+
+
+            Iterator<String> iterator = json.fieldNames();
+
+            while(iterator.hasNext()) {
+                String curr_value = iterator.next();
+                if(curr_value == "topping") {
+                    html = html + "<div style=\"color:Tomato;\">" + '"' + curr_value + '"' + " : " +
+                            json.get(curr_value) + "," + "</div>";
+                } else {
+                    html =  html + '"' + curr_value + '"' + " : " + json.get(curr_value) + ",";
+                }
+            }
+            html = html.substring(0, html.length() - 1) + '}';
+
+
+
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(html);
+        } catch (Exception e) {
+            System.err.println("Error while removing attributes: " + e.getMessage());
+        }
+        return "";
+         */
     }
 }
