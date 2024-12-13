@@ -5,11 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import pl.put.poznan.transformer.logic.Json;
 
-public class deleteElemntDecorator extends JsonDecorator {
+public class deleteElementDecorator extends JsonDecorator {
 
     private String attributes;
 
-    public deleteElemntDecorator(Json text){
+    public deleteElementDecorator(Json text){
         super(text);
     }
     public void setAttributes(String attributes) {
@@ -17,10 +17,10 @@ public class deleteElemntDecorator extends JsonDecorator {
     }
 
     public String[] getDataDeleted(){
-        return delete_elemnt(super.getData(),attributes);
+        return delete_element(super.getData(),attributes);
     }
 
-    public String [] delete_elemnt(String json_text,  String attributes) {
+    public String [] delete_element(String json_text,  String attributes) {
         ObjectMapper mapper = new ObjectMapper();
         String[] splitted = attributes.split(",");
         String successful_remove = "Removed attributes: ";

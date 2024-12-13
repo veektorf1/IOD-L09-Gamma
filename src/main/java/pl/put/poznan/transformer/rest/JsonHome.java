@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import pl.put.poznan.transformer.logic.Json;
 import pl.put.poznan.transformer.logic.JsonImpl;
-import pl.put.poznan.transformer.logic.JsonTools;
-import pl.put.poznan.transformer.logic.decorators.deleteElemntDecorator;
+import pl.put.poznan.transformer.logic.decorators.deleteElementDecorator;
 import pl.put.poznan.transformer.logic.decorators.comparisonDecorator;
 import pl.put.poznan.transformer.logic.decorators.showSelectedDecorator;
 import pl.put.poznan.transformer.logic.decorators.fullJsonDecorator;
@@ -59,12 +58,12 @@ public class JsonHome {
         Json json = new JsonImpl(finalInput);
 
         try{
-            showSelectedDecorator showselected = new showSelectedDecorator(json);
-            showselected.setAttributes(attributes);
-            String selected_json = showselected.getData();
+            showSelectedDecorator show_selected = new showSelectedDecorator(json);
+            show_selected.setAttributes(attributes);
+            String[] selected_json = show_selected.getDataSelected();
 
-            model.addAttribute("json",selected_json) ;
-
+            model.addAttribute("json",selected_json[0]) ;
+            model.addAttribute("selected",selected_json[1]) ;
         } catch (Exception e) {
             model.addAttribute("json", "Invalid JSON input: " + e.getMessage());
         }
@@ -79,9 +78,9 @@ public class JsonHome {
         
         Json json = new JsonImpl((finalInput));
         try{
-            deleteElemntDecorator deleteelemnt = new deleteElemntDecorator(json);
-            deleteelemnt.setAttributes(attributes);
-            String[] deleted_json = deleteelemnt.getDataDeleted();
+            deleteElementDecorator delete_elements = new deleteElementDecorator(json);
+            delete_elements.setAttributes(attributes);
+            String[] deleted_json = delete_elements.getDataDeleted();
             
             model.addAttribute("json", deleted_json[0]);
             model.addAttribute("deleted", deleted_json[1]);

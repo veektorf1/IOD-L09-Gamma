@@ -5,7 +5,7 @@
   <title>Title</title>
 </head>
 <body>
-<p> Selected: </p>
+<pre id="selected" th:text="${selected}"></pre>
 <pre id="jsonOutput" th:text="${json}"></pre>
 <button onclick="copyToClipboard()">Copy JSON</button>
 
