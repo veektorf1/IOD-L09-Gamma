@@ -3,12 +3,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.put.poznan.transformer.logic.decorators.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pl.put.poznan.transformer.rest.JsonHome;
 
 
 public class JsonTransformer {
 
     public String method;
     public String attributes;
+    private final Logger logger = LoggerFactory.getLogger(JsonTransformer.class);
 
     public JsonTransformer(String method, String attributes) {
         this.method = method;
@@ -26,25 +30,24 @@ public class JsonTransformer {
 
                 fullJsonDecorator full_dec= new fullJsonDecorator(data);
                 result = full_dec.getData();
-            };
-
-            if(method.equals("minify")) {
+            }
+            else if(method.equals("minify")) {
                 minifyDecorator min_dec = new minifyDecorator(data);
                 result = min_dec.getData();
-            };
-            if(method.equals("delete")) {
+            }
+            else if(method.equals("delete")) {
                 deleteElementDecorator del_dec = new deleteElementDecorator(data);
                 del_dec.setAttributes(attributes);
 
                 result = del_dec.getDataDeleted()[0];
-            };
-            if(method.equals("select")) {
+            }
+            else if(method.equals("select")) {
                 showSelectedDecorator sel_dec = new showSelectedDecorator(data);
                 sel_dec.setAttributes(attributes);
 
                 result =  sel_dec.getDataSelected()[0];
-            };
-            if(method.equals("compare")) {
+            }
+            else if(method.equals("compare")) {
                 JsonNode entry_json = mapper.readTree(data.getData());
                 String main_json = mapper.writeValueAsString(entry_json.get("main"));
                 String sec_json = mapper.writeValueAsString(entry_json.get("second"));
@@ -65,6 +68,8 @@ public class JsonTransformer {
                 if(!result.isEmpty()) {
                     result = result.substring(0, result.length() - 1);
                 }
+            } else {
+                logger.debug("Requested method dosen't exist");
             }
             return result;
         } catch (Exception e) {

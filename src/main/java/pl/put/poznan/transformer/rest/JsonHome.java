@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory;
 
 @Controller
 public class JsonHome {
-    public int i;
     private final Logger logger = LoggerFactory.getLogger(JsonHome.class);
 
     @RequestMapping("/")
@@ -34,6 +33,7 @@ public class JsonHome {
     public String post1(@RequestParam("input2") String finalInput, Model model) {
         String[] arrStr = {};
         Json json = new JsonImpl(finalInput);
+        logger.info("Form request for full json");
 
         try{
               fullJsonDecorator fulljsondec= new fullJsonDecorator(json);
@@ -49,6 +49,8 @@ public class JsonHome {
     public String post2(@RequestParam("input1") String finalInput, Model model) {
         String[] arrStr = {};
         Json json = new JsonImpl(finalInput);
+        logger.info("Form request for minify");
+
         try{
             minifyDecorator mindec = new minifyDecorator(json);
             String jsonminify = mindec.getData();
@@ -66,6 +68,7 @@ public class JsonHome {
 
 //        JsonTools tools = new JsonTools(arrStr);
         Json json = new JsonImpl(finalInput);
+        logger.info("Form request for select");
 
         try{
             showSelectedDecorator show_selected = new showSelectedDecorator(json);
@@ -87,6 +90,9 @@ public class JsonHome {
         String[] arrStr = {};
         
         Json json = new JsonImpl((finalInput));
+
+        logger.info("Form request for delete");
+
         try{
             deleteElementDecorator delete_elements = new deleteElementDecorator(json);
             delete_elements.setAttributes(attributes);
@@ -105,6 +111,7 @@ public class JsonHome {
     public String post5(@RequestParam("MainJSON") String mainInput,@RequestParam("SecJSON") String secInput, Model model) {
         String[] arrStr = {};
         Json json = new JsonImpl(mainInput);
+        logger.info("Form request for comparison");
         try{
             comparisonDecorator comparison = new comparisonDecorator(json);
             comparison.setAttributes(secInput);
@@ -123,9 +130,12 @@ public class JsonHome {
     public ResponseEntity<String> post6(@RequestParam(name = "method", defaultValue = "full") String method,
                                         @RequestParam(name = "attributes", defaultValue = "") String attributes,
                                         @RequestBody String data) {
-       System.out.println(method);
-        System.out.println(data);
-        System.out.println(attributes);
+
+
+        logger.info("Request for " + method);
+        if(!attributes.equals("")) {
+            logger.debug("Attributes: " + attributes);
+        }
 
         Json json = new JsonImpl(data);
         JsonTransformer transformer = new JsonTransformer(method, attributes);
