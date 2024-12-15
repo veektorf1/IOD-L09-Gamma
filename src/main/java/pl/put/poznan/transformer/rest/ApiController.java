@@ -1,6 +1,8 @@
 package pl.put.poznan.transformer.rest;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,17 +13,21 @@ import pl.put.poznan.transformer.logic.JsonTransformer;
 
 @RestController
 public class ApiController {
+
+    private final Logger logger = LoggerFactory.getLogger(JsonHome.class);
+
     @RequestMapping(method = RequestMethod.POST,value = "/request")
-    public ResponseEntity<String> postAPI(@RequestParam(name = "method", defaultValue = "full") String method,
+    public String postAPI(@RequestParam(name = "method", defaultValue = "full") String method,
                                           @RequestParam(name = "attributes", defaultValue = "") String attributes,
                                           @RequestBody String data) {
-        System.out.println(method);
-        System.out.println(data);
-        System.out.println(attributes);
+        logger.info("Request for " + method);
+        if(!attributes.equals("")) {
+            logger.debug("Attributes: " + attributes);
+        }
 
         Json json = new JsonImpl(data);
         JsonTransformer transformer = new JsonTransformer(method, attributes);
 
-        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(transformer.transform(json));
+        return transformer.transform(json);
     }
 }
