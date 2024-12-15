@@ -126,22 +126,22 @@ public class JsonHome {
         return "resultComparison";
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/request")
-    public ResponseEntity<String> post6(@RequestParam(name = "method", defaultValue = "full") String method,
-                                        @RequestParam(name = "attributes", defaultValue = "") String attributes,
-                                        @RequestBody String data) {
-
-
-        logger.info("Request for " + method);
-        if(!attributes.equals("")) {
-            logger.debug("Attributes: " + attributes);
-        }
-
-        Json json = new JsonImpl(data);
-        JsonTransformer transformer = new JsonTransformer(method, attributes);
-
-        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(transformer.transform(json));
-    }
+//    @RequestMapping(method = RequestMethod.POST,value = "/request")
+//    public ResponseEntity<String> post6(@RequestParam(name = "method", defaultValue = "full") String method,
+//                                        @RequestParam(name = "attributes", defaultValue = "") String attributes,
+//                                        @RequestBody String data) {
+//
+//
+//        logger.info("Request for " + method);
+//        if(!attributes.equals("")) {
+//            logger.debug("Attributes: " + attributes);
+//        }
+//
+//        Json json = new JsonImpl(data);
+//        JsonTransformer transformer = new JsonTransformer(method, attributes);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(transformer.transform(json));
+//    }
 
 
 }
