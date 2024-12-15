@@ -1,20 +1,30 @@
 package pl.put.poznan.transformer.rest;
 
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import pl.put.poznan.transformer.logic.Json;
 import pl.put.poznan.transformer.logic.JsonImpl;
+import pl.put.poznan.transformer.logic.JsonTransformer;
 import pl.put.poznan.transformer.logic.decorators.deleteElementDecorator;
 import pl.put.poznan.transformer.logic.decorators.comparisonDecorator;
 import pl.put.poznan.transformer.logic.decorators.showSelectedDecorator;
 import pl.put.poznan.transformer.logic.decorators.fullJsonDecorator;
 import pl.put.poznan.transformer.logic.decorators.minifyDecorator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @Controller
 public class JsonHome {
     public int i;
+    private final Logger logger = LoggerFactory.getLogger(JsonHome.class);
 
     @RequestMapping("/")
     public String returnIndex (){
@@ -108,4 +118,20 @@ public class JsonHome {
         }
         return "resultComparison";
     }
+
+    @RequestMapping(method = RequestMethod.POST,value = "/request")
+    public ResponseEntity<String> post6(@RequestParam(name = "method", defaultValue = "full") String method,
+                                        @RequestParam(name = "attributes", defaultValue = "") String attributes,
+                                        @RequestBody String data) {
+       System.out.println(method);
+        System.out.println(data);
+        System.out.println(attributes);
+
+        Json json = new JsonImpl(data);
+        JsonTransformer transformer = new JsonTransformer(method, attributes);
+
+        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(transformer.transform(json));
+    }
+
+
 }
