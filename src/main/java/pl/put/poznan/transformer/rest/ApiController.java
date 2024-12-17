@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.transformer.logic.Json;
 import pl.put.poznan.transformer.logic.JsonImpl;
 import pl.put.poznan.transformer.logic.JsonTransformer;
+import pl.put.poznan.transformer.logic.decorators.fullJsonDecorator;
 
 @RestController
 public class ApiController {
@@ -40,10 +41,16 @@ public class ApiController {
         if(!attributes.equals("")) {
             logger.debug("Attributes: " + attributes);
         }
+        try {
+            String data2=  data.substring(1, data.length() - 1);;
+            Json json = new JsonImpl(data2);
+            JsonTransformer transformer = new JsonTransformer(method, attributes);
 
-        Json json = new JsonImpl(data);
-        JsonTransformer transformer = new JsonTransformer(method, attributes);
-
-        return transformer.transform(json);
+            System.out.println(transformer.transform(json));
+            return transformer.transform(json);
+        }
+        catch (Exception e){
+            return e.getMessage();
+        }
     }
 }

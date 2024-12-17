@@ -67,7 +67,7 @@ public class showSelectedDecorator extends JsonDecorator {
             return final_output;
         } catch (Exception e) {
             System.err.println("Error while converting text to JSON: " + e.getMessage());
+            throw new RuntimeException(e);
         }
-        return final_output;
     }
 }
