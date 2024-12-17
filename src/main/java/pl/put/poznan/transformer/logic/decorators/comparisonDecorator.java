@@ -55,39 +55,8 @@ public class comparisonDecorator extends JsonDecorator{
             return result;
         } catch (Exception e) {
             System.err.println("Error while removing attributes: " + e.getMessage());
+            throw new RuntimeException(e);
         }
-        return result;
 
-        /*
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            JsonNode json = mapper.readTree(json_text);
-            String html = "{";
-    String html = mapper.writeValueAsString(json);
-            html = html.substring(1,html.length() - 1);
-
-
-
-            Iterator<String> iterator = json.fieldNames();
-
-            while(iterator.hasNext()) {
-                String curr_value = iterator.next();
-                if(curr_value == "topping") {
-                    html = html + "<div style=\"color:Tomato;\">" + '"' + curr_value + '"' + " : " +
-                            json.get(curr_value) + "," + "</div>";
-                } else {
-                    html =  html + '"' + curr_value + '"' + " : " + json.get(curr_value) + ",";
-                }
-            }
-            html = html.substring(0, html.length() - 1) + '}';
-
-
-
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(html);
-        } catch (Exception e) {
-            System.err.println("Error while removing attributes: " + e.getMessage());
-        }
-        return "";
-         */
     }
 }

@@ -35,7 +35,7 @@ public class JsonHome {
      * @return Nazwa widoku "home".
      */
     @RequestMapping("/")
-    public String returnIndex (){
+    public String returnIndex() {
         return "home";
     }
 
@@ -52,11 +52,11 @@ public class JsonHome {
         Json json = new JsonImpl(finalInput);
         logger.info("Form request for full json");
 
-        try{
-              fullJsonDecorator fulljsondec= new fullJsonDecorator(json);
-              String jsonfull = fulljsondec.getData();
-              
-            model.addAttribute("input2",jsonfull) ;
+        try {
+            fullJsonDecorator fulljsondec = new fullJsonDecorator(json);
+            String jsonfull = fulljsondec.getData();
+            System.out.println(jsonfull);
+            model.addAttribute("input2", jsonfull);
         } catch (Exception e) {
             model.addAttribute("input2", "Invalid JSON input: " + e.getMessage());
         }
@@ -76,10 +76,10 @@ public class JsonHome {
         Json json = new JsonImpl(finalInput);
         logger.info("Form request for minify");
 
-        try{
+        try {
             minifyDecorator mindec = new minifyDecorator(json);
             String jsonminify = mindec.getData();
-            model.addAttribute("input1",jsonminify) ;
+            model.addAttribute("input1", jsonminify);
         } catch (Exception e) {
             model.addAttribute("input1", "Invalid JSON input: " + e.getMessage());
         }
@@ -103,13 +103,13 @@ public class JsonHome {
         Json json = new JsonImpl(finalInput);
         logger.info("Form request for select");
 
-        try{
+        try {
             showSelectedDecorator show_selected = new showSelectedDecorator(json);
             show_selected.setAttributes(attributes);
             String[] selected_json = show_selected.getDataSelected();
 
-            model.addAttribute("json",selected_json[0]) ;
-            model.addAttribute("selected",selected_json[1]) ;
+            model.addAttribute("json", selected_json[0]);
+            model.addAttribute("selected", selected_json[1]);
         } catch (Exception e) {
             model.addAttribute("json", "Invalid JSON input: " + e.getMessage());
         }
@@ -128,16 +128,16 @@ public class JsonHome {
     public String post4(@RequestParam("DeletedJSON") String finalInput,
                         @RequestParam("DeleteAttributes") String attributes, Model model) {
         String[] arrStr = {};
-        
+
         Json json = new JsonImpl((finalInput));
 
         logger.info("Form request for delete");
 
-        try{
+        try {
             deleteElementDecorator delete_elements = new deleteElementDecorator(json);
             delete_elements.setAttributes(attributes);
             String[] deleted_json = delete_elements.getDataDeleted();
-            
+
             model.addAttribute("json", deleted_json[0]);
             model.addAttribute("deleted", deleted_json[1]);
 
@@ -156,11 +156,11 @@ public class JsonHome {
      * @return Nazwa widoku "resultComparison".
      */
     @PostMapping("/postingComparison")
-    public String post5(@RequestParam("MainJSON") String mainInput,@RequestParam("SecJSON") String secInput, Model model) {
+    public String post5(@RequestParam("MainJSON") String mainInput, @RequestParam("SecJSON") String secInput, Model model) {
         String[] arrStr = {};
         Json json = new JsonImpl(mainInput);
         logger.info("Form request for comparison");
-        try{
+        try {
             comparisonDecorator comparison = new comparisonDecorator(json);
             comparison.setAttributes(secInput);
             String[] json_arr = comparison.getDataComparison();
@@ -173,23 +173,4 @@ public class JsonHome {
         }
         return "resultComparison";
     }
-
-//    @RequestMapping(method = RequestMethod.POST,value = "/request")
-//    public ResponseEntity<String> post6(@RequestParam(name = "method", defaultValue = "full") String method,
-//                                        @RequestParam(name = "attributes", defaultValue = "") String attributes,
-//                                        @RequestBody String data) {
-//
-//
-//        logger.info("Request for " + method);
-//        if(!attributes.equals("")) {
-//            logger.debug("Attributes: " + attributes);
-//        }
-//
-//        Json json = new JsonImpl(data);
-//        JsonTransformer transformer = new JsonTransformer(method, attributes);
-//
-//        return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_JSON).body(transformer.transform(json));
-//    }
-
-
 }

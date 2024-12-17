@@ -44,8 +44,8 @@ public class deleteElementDecorator extends JsonDecorator {
             return final_output;
         } catch (Exception e) {
             System.err.println("Error while removing attributes: " + e.getMessage());
+            throw new RuntimeException(e);
         }
-        return final_output;
     }
 
 }
