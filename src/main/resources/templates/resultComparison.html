@@ -2,29 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Comparison JSON</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<p> Comparison: </p>
-<pre style="display: inline-block;" id="mainOutput" th:text="${main}"></pre>
-<pre style="display: inline-block;" id="compOutput" th:text="${comp}"></pre>
-<pre style="display: inline-block;" id="secOutput" th:text="${sec}"></pre>
-
-<button onclick="copyToClipboard()">Copy JSON</button>
-
-<script>
-  const copyToClipboard = () => {
-      const jsonText = document.getElementById("jsonOutput").textContent;
-
-      navigator.clipboard.writeText(jsonText).then(function() {
-          alert("JSON copied to clipboard!");
-      }).catch(function(error) {
-          console.error("Error copying text to clipboard: ", error);
-      });
-  }
-</script>
-<form action ="/" method = "POST">
-  <input type ='submit' name ="Back" value = "Back"/>
-</form>
+<div class="container">
+  <h1 class="title">Comparison JSON</h1>
+  <div class="comparison-container">
+    <pre id="mainOutput" class="output" th:text="${main}"></pre>
+    <pre id="compOutput" class="output" th:text="${comp}"></pre>
+    <pre id="secOutput" class="output" th:text="${sec}"></pre>
+  </div>
+  <form action="/" method="POST" class="form">
+    <input type="submit" name="Back" value="Back" class="submit-btn">
+  </form>
+</div>
 </body>
 </html>

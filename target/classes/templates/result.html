@@ -2,25 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Full JSON</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<p> Value of full json: </p>
-<pre id="jsonOutput" th:text="${input2}"></pre>
-<button onclick="copyToClipboard()">Copy JSON</button>
-<script>
-    const copyToClipboard = () => {
-        const jsonText = document.getElementById("jsonOutput").textContent;
-
-        navigator.clipboard.writeText(jsonText).then(function() {
-            alert("JSON copied to clipboard!");
-        }).catch(function(error) {
-            console.error("Error copying text to clipboard: ", error);
-        });
-    }
-</script>
-<form action ="/" method = "POST">
-    <input type ='submit' name ="Back" value = "Back"/>
-</form>
+<div class="container">
+    <h1 class="title">Full JSON Output</h1>
+    <p class="description">Value of full JSON:</p>
+    <pre id="jsonOutput" class="output" th:text="${input2}"></pre>
+    <button onclick="copyToClipboard()" class="submit-btn">Copy JSON</button>
+    <form action="/" method="POST" class="form">
+        <input type="submit" name="Back" value="Back" class="submit-btn">
+    </form>
+</div>
+<script src="/js/script.js" defer></script>
 </body>
 </html>
