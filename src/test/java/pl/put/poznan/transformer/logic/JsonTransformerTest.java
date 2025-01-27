@@ -131,10 +131,10 @@ class JsonTransformerTest {
                 "  \"city\" : \"Florida\",\n" +
                 "  \"age\" : \"22\"\n" +
                 "}");
-        assertEquals("{\r\n" +
-                "  \"first name\" : \"John\",\n\n" +
-                "  \"city\" : \"Florida\",\n\n" +
-                "  \"age\" : \"22\"\r\n" +
+        assertEquals("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}", trans.transform(json));
     }
 
@@ -147,7 +147,7 @@ class JsonTransformerTest {
                 "  \"city\" : \"Florida\",\n" +
                 "  \"age\" : \"22\"\n" +
                 "}");
-        assertEquals("{\r\n" +
+        assertEquals("{\n" +
                 "  \"first name\" : \"John\",\n" +
                 "  \"city\" : \"Florida\",\n" +
                 "  \"age\" : \"22\"\n" +
