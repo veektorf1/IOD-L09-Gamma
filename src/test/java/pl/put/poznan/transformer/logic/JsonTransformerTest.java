@@ -113,6 +113,8 @@ class JsonTransformerTest {
                 "  \"city\" : \"Florida\",\n" +
                 "  \"age\" : \"22\"\n" +
                 "}");
+
+
         assertEquals("{\n" +
                 "  \"first name\" : \"John\",\n" +
                 "  \"city\" : \"Florida\",\n" +
@@ -130,9 +132,9 @@ class JsonTransformerTest {
                 "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("{\r\n" +
-                "  \"first name\" : \"John\",\n" +
-                "  \"city\" : \"Florida\",\n" +
-                "  \"age\" : \"22\"\n" +
+                "  \"first name\" : \"John\",\n\n" +
+                "  \"city\" : \"Florida\",\n\n" +
+                "  \"age\" : \"22\"\r\n" +
                 "}", trans.transform(json));
     }
 
