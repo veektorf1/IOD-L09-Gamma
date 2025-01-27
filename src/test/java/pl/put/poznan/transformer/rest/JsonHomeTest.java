@@ -20,19 +20,19 @@ class JsonHomeTest {
         JsonTransformer trans = new JsonTransformer("full", "");
 
         assertEquals("result", viewName);
-        assertEquals("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        assertEquals("{\n" +
+                "  \"first name\" : \"John\"\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}", model.getAttribute("input2"));
     }
 
     @Test
     void testPost2_MinifyJson() {
-        String inputJson = "{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        String inputJson = "{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}";
         ConcurrentModel model = new ConcurrentModel();
 
@@ -43,10 +43,10 @@ class JsonHomeTest {
 
     @Test
     void testPost3_SelectAttributes() {
-        String inputJson = "{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        String inputJson = "{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}";
         String attributes = "city";
         ConcurrentModel model = new ConcurrentModel();
@@ -56,18 +56,18 @@ class JsonHomeTest {
         assertEquals("resultSelected", viewName);
 
         // Sprawdzamy dane dodane do modelu
-        assertEquals("{\r\n" +
-                "  \"city\" : \"Florida\"\r\n" +
+        assertEquals("{\n" +
+                "  \"city\" : \"Florida\"\n" +
                 "}", model.getAttribute("json"));
         assertEquals("Selected attributes: " + attributes, model.getAttribute("selected"));
     }
 
     @Test
     void testPost4_SelectAttributesEmpty() {
-        String inputJson = "{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        String inputJson = "{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}";
         String attributes = "";
         ConcurrentModel model = new ConcurrentModel();
@@ -83,10 +83,10 @@ class JsonHomeTest {
 
     @Test
     void testPost5_SelectAttributesSomwWrong() {
-        String inputJson = "{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        String inputJson = "{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}";
         String good_attributes = "city";
         String bad_attributes = "first namee";
@@ -97,8 +97,8 @@ class JsonHomeTest {
         assertEquals("resultSelected", viewName);
 
         // Sprawdzamy dane dodane do modelu
-        assertEquals("{\r\n" +
-                "  \"city\" : \"Florida\"\r\n" +
+        assertEquals("{\n" +
+                "  \"city\" : \"Florida\"\n" +
                 "}", model.getAttribute("json"));
         assertEquals("Selected attributes: " + good_attributes + ". Didn't found: " + bad_attributes + ".",
                 model.getAttribute("selected"));
@@ -106,10 +106,10 @@ class JsonHomeTest {
 
     @Test
     void testPost6_DeleteAttributes() {
-        String inputJson = "{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        String inputJson = "{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}";
         String attributes = "age, first name";
         ConcurrentModel model = new ConcurrentModel();
@@ -117,8 +117,8 @@ class JsonHomeTest {
         String viewName = jsonHome.post4(inputJson, attributes, model);
 
         assertEquals("resultDeleted", viewName);
-        assertEquals("{\r\n" +
-                "  \"city\" : \"Florida\"\r\n" +
+        assertEquals("{\n" +
+                "  \"city\" : \"Florida\"\n" +
                 "}", model.getAttribute("json"));
         assertEquals("Removed attributes: " + attributes, model.getAttribute("deleted"));
     }

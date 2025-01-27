@@ -26,10 +26,10 @@ class JsonTransformerTest {
         JsonTransformer trans = new JsonTransformer("full", "");
 
         Json json = new JsonImpl("{           \"first name\": \"John\",           \"city\": \"Florida\",           \"age\": \"22\"   }");
-        assertEquals("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        assertEquals("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}", trans.transform(json));
 
     }
@@ -46,10 +46,10 @@ class JsonTransformerTest {
     void json_minify_test() {
         JsonTransformer trans = new JsonTransformer("minify", "");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("{\"first name\":\"John\",\"city\":\"Florida\",\"age\":\"22\"}", trans.transform(json));
     }
@@ -58,10 +58,10 @@ class JsonTransformerTest {
     void show_selected_null() {
         JsonTransformer trans = new JsonTransformer("select", "");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("null", trans.transform(json));
     }
@@ -70,10 +70,10 @@ class JsonTransformerTest {
     void show_selected_wrong() {
         JsonTransformer trans = new JsonTransformer("select", "cityy");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("null", trans.transform(json));
     }
@@ -82,13 +82,13 @@ class JsonTransformerTest {
     void show_selected_test() {
         JsonTransformer trans = new JsonTransformer("select", "city");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
-        assertEquals("{\r\n" +
-                "  \"city\" : \"Florida\"\r\n" +
+        assertEquals("{\n" +
+                "  \"city\" : \"Florida\"\n" +
                 "}", trans.transform(json));
     }
 
@@ -96,10 +96,10 @@ class JsonTransformerTest {
     void show_selected_wrong_sepearator() {
         JsonTransformer trans = new JsonTransformer("select", "city. first name");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("null", trans.transform(json));
     }
@@ -108,15 +108,15 @@ class JsonTransformerTest {
     void delete_selected_null() {
         JsonTransformer trans = new JsonTransformer("delete", "");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\\n" +
                 "}");
-        assertEquals("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        assertEquals("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}", trans.transform(json));
     }
 
@@ -124,15 +124,15 @@ class JsonTransformerTest {
     void delete_selected_wrong() {
         JsonTransformer trans = new JsonTransformer("delete", "agee");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}", trans.transform(json));
     }
 
@@ -140,15 +140,15 @@ class JsonTransformerTest {
     void delete_selected_wrong_separator() {
         JsonTransformer trans = new JsonTransformer("delete", "age. first name");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\"\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}", trans.transform(json));
     }
 
@@ -156,13 +156,13 @@ class JsonTransformerTest {
     void delete_selected_test() {
         JsonTransformer trans = new JsonTransformer("delete", "age, first name");
 
-        Json json = new JsonImpl("{\r\n" +
-                "  \"first name\" : \"John\",\r\n" +
-                "  \"city\" : \"Florida\",\r\n" +
-                "  \"age\" : \"22\"\r\n" +
+        Json json = new JsonImpl("{\n" +
+                "  \"first name\" : \"John\",\n" +
+                "  \"city\" : \"Florida\",\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
-        assertEquals("{\r\n" +
-                "  \"city\" : \"Florida\"\r\n" +
+        assertEquals("{\n" +
+                "  \"city\" : \"Florida\"\n" +
                 "}", trans.transform(json));
     }
 }
