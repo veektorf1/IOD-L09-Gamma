@@ -1,3 +1,13 @@
-/Users/mochodek/Documents/Dydaktyka/Wyklady/IO/Laboratory classes/projekt/ioprojectarchitecture/src/main/java/pl/put/poznan/transformer/app/TextTransformerApplication.java
-/Users/mochodek/Documents/Dydaktyka/Wyklady/IO/Laboratory classes/projekt/ioprojectarchitecture/src/main/java/pl/put/poznan/transformer/logic/TextTransformer.java
-/Users/mochodek/Documents/Dydaktyka/Wyklady/IO/Laboratory classes/projekt/ioprojectarchitecture/src/main/java/pl/put/poznan/transformer/rest/TextTransformerController.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\app\JsonToolsApplication.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\decorators\deleteElementDecorator.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\decorators\JsonDecorator.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\JsonTransformer.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\decorators\minifyDecorator.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\decorators\showSelectedDecorator.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\rest\JsonHome.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\decorators\fullJsonDecorator.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\rest\ApiController.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\JsonImpl.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\JsonTools.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\decorators\comparisonDecorator.java
+C:\Users\rapra\Desktop\IOD_1\JSON Tools\IOD-L09-Gamma\src\main\java\pl\put\poznan\transformer\logic\Json.java

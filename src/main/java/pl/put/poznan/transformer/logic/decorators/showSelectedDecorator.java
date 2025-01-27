@@ -29,7 +29,7 @@ public class showSelectedDecorator extends JsonDecorator {
         String[] splitted = attributes.split(",");
         String left_attributes = "";
         String jsonText = "{";
-        String fianl_atributes = "Wybrane atrubyty: ";
+        String fianl_atributes = "Selected attributes: ";
 
 
         try {
@@ -46,7 +46,7 @@ public class showSelectedDecorator extends JsonDecorator {
             }
 
             if(jsonText.equals("{")) {
-                fianl_atributes = "Żaden z podanych argumentów nie znajduje się w dnaych";
+                fianl_atributes = "None of chosen attributes were found in data.";
                 jsonText = "";
             } else {
                 jsonText = jsonText.substring(0, jsonText.length() - 1) + '}';
@@ -56,7 +56,7 @@ public class showSelectedDecorator extends JsonDecorator {
                 if(!left_attributes.isEmpty()) {
                     left_attributes = left_attributes.substring(0, left_attributes.length() - 2);
 
-                    fianl_atributes = fianl_atributes + ". Źle podano atrybuty: " + left_attributes + '.';
+                    fianl_atributes = fianl_atributes + ". Didn't found: " + left_attributes + '.';
                 }
             }
             JsonNode final_json = mapper.readTree(jsonText);
