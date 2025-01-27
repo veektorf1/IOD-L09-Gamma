@@ -21,7 +21,7 @@ class JsonHomeTest {
 
         assertEquals("result", viewName);
         assertEquals("{\n" +
-                "  \"first name\" : \"John\"\n" +
+                "  \"first name\" : \"John\",\n" +
                 "  \"city\" : \"Florida\",\n" +
                 "  \"age\" : \"22\"\n" +
                 "}", model.getAttribute("input2"));

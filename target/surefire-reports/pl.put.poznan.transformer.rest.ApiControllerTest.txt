@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+Test set: pl.put.poznan.transformer.rest.ApiControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in pl.put.poznan.transformer.rest.ApiControllerTest
+full_test  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <{
+  "first name" : "John",
+  "city" : "Florida",
+  "age" : "22"
+}> but was: <"first name">
+	at pl.put.poznan.transformer.rest.ApiControllerTest.full_test(ApiControllerTest.java:31)
+

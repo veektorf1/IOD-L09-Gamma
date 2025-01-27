@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Test set: pl.put.poznan.transformer.rest.JsonHomeTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.002 s <<< FAILURE! - in pl.put.poznan.transformer.rest.JsonHomeTest
+testPost6_DeleteAttributes  Time elapsed: 0.001 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <{
+  "city" : "Florida"
+}> but was: <{
+  "city" : "Florida"
+}>
+	at pl.put.poznan.transformer.rest.JsonHomeTest.testPost6_DeleteAttributes(JsonHomeTest.java:120)
+
+testPost5_SelectAttributesSomwWrong  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <{
+  "city" : "Florida"
+}> but was: <{
+  "city" : "Florida"
+}>
+	at pl.put.poznan.transformer.rest.JsonHomeTest.testPost5_SelectAttributesSomwWrong(JsonHomeTest.java:100)
+
+testPost3_SelectAttributes  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <{
+  "city" : "Florida"
+}> but was: <{
+  "city" : "Florida"
+}>
+	at pl.put.poznan.transformer.rest.JsonHomeTest.testPost3_SelectAttributes(JsonHomeTest.java:59)
+
+testPost1_FullJson  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <{
+  "first name" : "John",
+  "city" : "Florida",
+  "age" : "22"
+}> but was: <{
+  "first name" : "John",
+  "city" : "Florida",
+  "age" : "22"
+}>
+	at pl.put.poznan.transformer.rest.JsonHomeTest.testPost1_FullJson(JsonHomeTest.java:23)
+
