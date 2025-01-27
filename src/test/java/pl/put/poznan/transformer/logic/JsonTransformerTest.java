@@ -111,7 +111,7 @@ class JsonTransformerTest {
         Json json = new JsonImpl("{\n" +
                 "  \"first name\" : \"John\",\n" +
                 "  \"city\" : \"Florida\",\n" +
-                "  \"age\" : \"22\\n" +
+                "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("{\n" +
                 "  \"first name\" : \"John\",\n" +
@@ -142,7 +142,7 @@ class JsonTransformerTest {
 
         Json json = new JsonImpl("{\n" +
                 "  \"first name\" : \"John\",\n" +
-                "  \"city\" : \"Florida\"\n" +
+                "  \"city\" : \"Florida\",\n" +
                 "  \"age\" : \"22\"\n" +
                 "}");
         assertEquals("{\r\n" +
