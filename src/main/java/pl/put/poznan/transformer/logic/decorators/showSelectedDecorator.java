@@ -17,9 +17,11 @@ public class showSelectedDecorator extends JsonDecorator {
     public void setAttributes(String attributes) {
         this.attributes = attributes;
     }
-
+    public String getAttributes() {
+        return this.attributes;
+    }
     public String[] getDataSelected(){
-        return show_selected(super.getData(),attributes);
+        return show_selected(super.getData(),getAttributes());
     }
 
     public String [] show_selected(String json_text,  String attributes){

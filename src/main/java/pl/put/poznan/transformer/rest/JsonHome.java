@@ -99,7 +99,6 @@ public class JsonHome {
                         @RequestParam("SelectedAttributes") String attributes, Model model) {
         String[] arrStr = {};
 
-//        JsonTools tools = new JsonTools(arrStr);
         Json json = new JsonImpl(finalInput);
         logger.info("Form request for select");
 

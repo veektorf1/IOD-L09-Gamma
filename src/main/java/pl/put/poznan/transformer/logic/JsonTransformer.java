@@ -52,7 +52,7 @@ public class JsonTransformer {
              */
             if(method.equals("full")) {
 
-                fullJsonDecorator full_dec= new fullJsonDecorator(data);
+                fullJsonDecorator full_dec = new fullJsonDecorator(data);
                 result = full_dec.getData();
             }
             /**
