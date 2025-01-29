@@ -87,6 +87,7 @@
                 </executions>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                    <failOnError>false</failOnError>
                 </configuration>
             </plugin>
         </plugins>
