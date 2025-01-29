@@ -15,6 +15,9 @@ public class deleteElementDecorator extends JsonDecorator {
     public void setAttributes(String attributes) {
         this.attributes = attributes;
     }
+    public String getAttributes() {
+        return this.attributes;
+    }
 
     public String[] getDataDeleted(){
         return delete_element(super.getData(),attributes);

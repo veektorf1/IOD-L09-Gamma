@@ -15,6 +15,9 @@ public class comparisonDecorator extends JsonDecorator{
     public void setAttributes(String attributes) {
         this.attributes = attributes;
     }
+    public String getAttributes() {
+        return this.attributes;
+    }
     
     public String[] getDataComparison(){
         return comparison(super.getData(),attributes);
